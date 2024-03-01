@@ -24,7 +24,7 @@ def reading(textfiles=''):
             lines[i] = lines[i][:-1]
         # print(lines)
         if len(textfiles) > 1:
-            print(textfile)
+            print(textfile, '\n')
         processing(lines)
 
 def processing(lines):
