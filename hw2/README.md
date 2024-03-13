@@ -1,47 +1,41 @@
-# Linux utils
+# Latex creating
 
-Here is the implementation of 3 linux command line utilities: nl, tail, wc
+Solving tasks on creating files in LaTeX format
 
 ## Contents
-- [nl](#nl)
-- [tail](#tail)
-- [wc](#wc)
+- [Creating table](#creating-table)
+- [Creating PDF](#creating-pdf)
+- [Docker](#docker)
 
-### nl
-**Task:** You need to implement a CLI application, apart from the code, you need to attach as artefacts a text file of how you tested the operability of your code (just a copy of the commands and outputs from the terminal)
+### Creating table
+**Task:** 
 
-- Write a simplified version of the `nl` utility -- a script that outputs numbered lines from a file to `stdout`.
-- If no file is passed, the script reads the lines from `stdin`.
-- It should work in the same way as `nl -b a`.
+Write a function to generate tables. You cannot use third-party libraries to generate LaTeX. The input is a double list, the output is a string with a formatted valid LaTeX. You can check that LaTeX is valid, for example, in *Overleaf*. Using another module (`.py` file) you need to import your function and using it you need to save it to a `.tex` file example 
 
-**Usage:** `python3 nl_util.py --textfile example.txt`. You can also use it with .py files in this folder or with your file.
 
+**Usage:**
+
+- `python3 latex_table_generator.py` - You can use this script to check function in your terminal.
+- `python3 latex_file_generator.py` - You can use this script to create a LaTeX table in your directory.
+
+- 
 **Example of working:**
-![nl.png](images/nl.png)
+  
+![console_output_generator.png](images/console_output_generator.png)
+
+You can see the results of the programmes below.
+The resulting LaTeX was simply pasted on the Overleaf website.
+
+![table_from_generator.png](images/table_from_generator.png)
+
+![table_from_file.png](images/table_from_file.png)
 
 
+### Creating PDF
 
-### tail
-**Task:** Write a simplified version of the `tail` utility -- a script that outputs the last 10 lines of each transferred file to `stdout`.
-
-- If more than one file is transferred, output its name before processing the next file. See the original `tail` utility for details, your script should repeat the formatting.
-- if no file is passed, you must output the last 17 lines of `stdin`.
-
-**Usage:** `python3 tail_util.py example.txt`. You can also use it with .py files in this folder or with your file.
-
-**Example of working:**
-![nl.png](images/tail.png)
+In the process
 
 
-### wc
-**Task:** Write a script that works the same way as the `wc` utility called without additional options.
-That is, for each file transferred, the utility outputs statistics (3 numbers) and the file name.
+### Docker
 
-In this case:
-- if more than one file is transferred, the utility displays total statistics at the very end,
-- if no file is transferred, the utility reads the whole input and prints statistics for it without a name.
-
-**Usage:** `python3 wc_util.py example.txt`. You can also use it with .py files in this folder or with your file.
-
-**Example of working:**
-![nl.png](images/wc.png)
+In the process
