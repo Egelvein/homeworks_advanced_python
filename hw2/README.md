@@ -49,7 +49,7 @@ Use any picture (png file) as a picture, BUT:
 
 File `table.pdf` in the "artifacts" folder. I decided not to add my library to anaconda so as not to clog it up, but here is the output of the local connection of my library:
 
-![library](images/)
+![library](images/library.png)
 
 ### Docker
 
