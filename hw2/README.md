@@ -15,8 +15,8 @@ Write a function to generate tables. You cannot use third-party libraries to gen
 
 **Usage:**
 
-- `python3 latex_table_generator.py` - You can use this script to check function in your terminal.
-- `python3 latex_file_generator.py` - You can use this script to create a LaTeX table in your directory.
+- `python3 latex_generator.py` - You can use this script to check function in your terminal.
+- `python3 latex_filemaker.py` - You can use this script to create a LaTeX table in your directory.
 
 - 
 **Example of working:**
@@ -33,8 +33,23 @@ The resulting LaTeX was simply pasted on the Overleaf website.
 
 ### Creating PDF
 
-In the process
+**Task:**
 
+Write a function to generate pictures in LaTeX. (In the same module as the previous function).
+Use any picture (png file) as a picture, BUT:
+- You need to build your code into a library using setuptools/conda-build, put it in the repository
+- Install your library.
+- Then, using your library, generate a PDF with the table from task 2.1 and a picture using the resulting Latex. The PDF is the first artifact of the task, the link to the repository in PyPI/Anaconda is the second.
+
+**Usage:**
+
+`python3 latex_filemaker.py` - You can use this script to create a LaTeX table and pdf table in your directory.
+
+**Example of working:**
+
+File `table.pdf` in the "artifacts" folder. I decided not to add my library to anaconda so as not to clog it up, but here is the output of the local connection of my library:
+
+![library](images/)
 
 ### Docker
 
