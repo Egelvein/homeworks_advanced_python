@@ -53,4 +53,11 @@ File `table.pdf` in the "artifacts" folder. I decided not to add my library to a
 
 ### Docker
 
-In the process
+**Task:**
+Most likely, for task 2.2 you have installed some binary dependencies of LaTeX by hand. If another developer wants to reuse your code, he will have to do the same. To avoid this, Docker is usually used. 
+The goal is to write a Dockerfile that will install the dependencies, run your code (to generate the .tex), and then generate the pdf.
+The artifact will be the Dockerfile itself, you can leave it in the hw02 folder
+
+**Result:**
+
+`Dockerfile` is in the "artifacts" folder
