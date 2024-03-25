@@ -1,63 +1,56 @@
-# Latex creating
+# Classes for matrix's operations
 
-Solving tasks on creating files in LaTeX format
+Solving tasks on creating classes for work with matrices
 
 ## Contents
-- [Creating table](#creating-table)
-- [Creating PDF](#creating-pdf)
-- [Docker](#docker)
+- [Task 1](#task-1)
+- [Task 2](#task-2)
+- [Task 3](#task-3)
 
-### Creating table
+### Task 1
 **Task:** 
 
-Write a function to generate tables. You cannot use third-party libraries to generate LaTeX. The input is a double list, the output is a string with a formatted valid LaTeX. You can check that LaTeX is valid, for example, in *Overleaf*. Using another module (`.py` file) you need to import your function and using it you need to save it to a `.tex` file example 
+You need to implement a small library for working with matrices
+- Make a matrix class in which to define addition and multiplication operations (matrix and component-by-component) by overloading ```+, *, @``` operators (as in numpy). Call exceptions if the matrices on the input are of incorrect dimension (ValueError)
+- Generate two matrices via ```np.random.randint(0, 10, (10, 10))``` with seed 0 and perform all three operations on them.
+- Write the results to text files named ```matrix+.txt```, ```matrix*.txt```, ```matrix@.txt```, respectively. This will be an artifact of the task.
 
+ 
+**Solution:**
+Solution of this task are files in the folder ```artifacts/3.1```
 
-**Usage:**
-
-- `python3 latex_generator.py` - You can use this script to check function in your terminal.
-- `python3 latex_filemaker.py` - You can use this script to create a LaTeX table in your directory.
-
-- 
-**Example of working:**
-  
-![console_output_generator.png](images/console_output_generator.png)
-
-You can see the results of the programmes below.
-The resulting LaTeX was simply pasted on the Overleaf website.
-
-![table_from_generator.png](images/table_from_generator.png)
-
-![table_from_file.png](images/table_from_file.png)
-
-
-### Creating PDF
-
+### Task 2
 **Task:**
 
-Write a function to generate pictures in LaTeX. (In the same module as the previous function).
-Use any picture (png file) as a picture, BUT:
-- You need to build your code into a library using setuptools/conda-build, put it in the repository
-- Install your library.
-- Then, using your library, generate a PDF with the table from task 2.1 and a picture using the resulting Latex. The PDF is the first artifact of the task, the link to the repository in PyPI/Anaconda is the second.
+- Using numpy mixins, make a class that will be able to perform all standard arithmetic operations.
+- Also add through mixins: writing an object to a file, beautiful display in the console (__str__), getters and setters for class fields
+- The classes themselves should have a minimum number of methods
 
-**Usage:**
+ 
+**Solution:**
+Solution of this task are files in the folder ```artifacts/3.2```
 
-`python3 latex_filemaker.py` - You can use this script to create a LaTeX table and pdf table in your directory.
+### Task 3
+**Task:** 
 
-**Example of working:**
+The task is a continuation of task 1:
+- To invent and implement the simplest hash function (give a brief text description in the comments in the code) for a matrix in the __hash__ method (put it in the mixins).
+- Restriction on the hash function - it must be non-constant (not return always one number)
+- Configure caching of the product of matrices by this hash function
+- Find collision in the hash function (if the search is done by code, the code should also be posted).
+- The artifact is 7 files:
+- - ```A.txt```, ```B.txt```, ```C.txt```, ```D.txt``` are matrices such that ```(hash(A) == hash(C)) and (A != C) and (B == D) and (A @ B != C @ D))```
+- - ```AB.txt``` is the result of the product ```A @ B```
+- - ```CD.txt``` - the real result of ```C @ D```
+- - ```hash.txt``` - hash of matrices ```AB``` and ```CD```
 
-File `table.pdf` in the "artifacts" folder. I decided not to add my library to anaconda so as not to clog it up, but here is the output of the local connection of my library:
 
-![library](images/library.png)
+**Description:**
+I failed to create a hash function so that ```A != C``` but ```hash(A) == hash(C)```. Also I don`t know how to add my hash function in the mixin.
 
-### Docker
+I decided to use a hash function I invented myself, because the conditional method of mean squares seemed too simple to me: ```hash_value = value^3 + (seed - 2)*value``` 
 
-**Task:**
-Most likely, for task 2.2 you have installed some binary dependencies of LaTeX by hand. If another developer wants to reuse your code, he will have to do the same. To avoid this, Docker is usually used. 
-The goal is to write a Dockerfile that will install the dependencies, run your code (to generate the .tex), and then generate the pdf.
-The artifact will be the Dockerfile itself, you can leave it in the hw02 folder
-
-**Result:**
-
-`Dockerfile` is in the "artifacts" folder
+But I managed to create a reverse hash function, which I also checked here (the file can be found in the solutions folder)
+ 
+**Solution:**
+Solution of this task are files in the folder ```artifacts/3.3```
