@@ -10,7 +10,7 @@ def hash_function(val, seed, hash_val):
 
 def unhash(S, H, a, b, tolerance=1e-6, max_iterations=1000):
     if hash_function(a, S, H) * hash_function(b, S, H) >= 0:
-        print("Не удается найти корень на заданном интервале.")
+        print("I can`t find solution with current a and b")
         return None
 
     else:
@@ -37,7 +37,8 @@ np.random.seed(0)
 A = np.random.randint(0, 10, (10, 10))
 B = np.random.randint(0, 10, (10, 10))
 C = np.random.randint(0, 10, (10, 10))
-D = np.random.randint(0, 10, (10, 10))
+# D = np.random.randint(0, 10, (10, 10))
+D = B
 
 np.savetxt('artifacts/3.3/A.txt', A, fmt='%d')
 np.savetxt('artifacts/3.3/B.txt', B, fmt='%d')
@@ -52,6 +53,7 @@ D = Matrix(D)
 AB = A @ B
 CD = C @ D
 
+print('AB != CD: ', AB != CD)
 
 hash_AB, len_hash_AB = AB.hash_counter()
 hash_CD, _ = CD.hash_counter()
