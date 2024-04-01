@@ -1,0 +1,64 @@
+2024-04-01 16:29:39,771 - Starting ThreadPoolExecutor with 1 workers
+2024-04-01 16:29:39,771 - ThreadPoolExecutor with 1 workers finished in 0.0001 seconds
+2024-04-01 16:29:39,772 - Starting ProcessPoolExecutor with 1 workers
+2024-04-01 16:29:39,772 - ProcessPoolExecutor with 1 workers finished in 0.0001 seconds
+2024-04-01 16:29:39,772 - Starting ThreadPoolExecutor with 2 workers
+2024-04-01 16:29:39,773 - ThreadPoolExecutor with 2 workers finished in 0.0017 seconds
+2024-04-01 16:29:39,774 - Starting ProcessPoolExecutor with 2 workers
+2024-04-01 16:29:39,774 - ProcessPoolExecutor with 2 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,774 - Starting ThreadPoolExecutor with 3 workers
+2024-04-01 16:29:39,775 - ThreadPoolExecutor with 3 workers finished in 0.0007 seconds
+2024-04-01 16:29:39,775 - Starting ProcessPoolExecutor with 3 workers
+2024-04-01 16:29:39,776 - ProcessPoolExecutor with 3 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,776 - Starting ThreadPoolExecutor with 4 workers
+2024-04-01 16:29:39,777 - ThreadPoolExecutor with 4 workers finished in 0.0011 seconds
+2024-04-01 16:29:39,777 - Starting ProcessPoolExecutor with 4 workers
+2024-04-01 16:29:39,778 - ProcessPoolExecutor with 4 workers finished in 0.0008 seconds
+2024-04-01 16:29:39,778 - Starting ThreadPoolExecutor with 5 workers
+2024-04-01 16:29:39,778 - ThreadPoolExecutor with 5 workers finished in 0.0008 seconds
+2024-04-01 16:29:39,778 - Starting ProcessPoolExecutor with 5 workers
+2024-04-01 16:29:39,779 - ProcessPoolExecutor with 5 workers finished in 0.0004 seconds
+2024-04-01 16:29:39,779 - Starting ThreadPoolExecutor with 6 workers
+2024-04-01 16:29:39,780 - ThreadPoolExecutor with 6 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,780 - Starting ProcessPoolExecutor with 6 workers
+2024-04-01 16:29:39,780 - ProcessPoolExecutor with 6 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,780 - Starting ThreadPoolExecutor with 7 workers
+2024-04-01 16:29:39,781 - ThreadPoolExecutor with 7 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,781 - Starting ProcessPoolExecutor with 7 workers
+2024-04-01 16:29:39,782 - ProcessPoolExecutor with 7 workers finished in 0.0008 seconds
+2024-04-01 16:29:39,782 - Starting ThreadPoolExecutor with 8 workers
+2024-04-01 16:29:39,782 - ThreadPoolExecutor with 8 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,782 - Starting ProcessPoolExecutor with 8 workers
+2024-04-01 16:29:39,783 - ProcessPoolExecutor with 8 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,783 - Starting ThreadPoolExecutor with 9 workers
+2024-04-01 16:29:39,783 - ThreadPoolExecutor with 9 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,784 - Starting ProcessPoolExecutor with 9 workers
+2024-04-01 16:29:39,784 - ProcessPoolExecutor with 9 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,784 - Starting ThreadPoolExecutor with 10 workers
+2024-04-01 16:29:39,785 - ThreadPoolExecutor with 10 workers finished in 0.0007 seconds
+2024-04-01 16:29:39,785 - Starting ProcessPoolExecutor with 10 workers
+2024-04-01 16:29:39,785 - ProcessPoolExecutor with 10 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,785 - Starting ThreadPoolExecutor with 11 workers
+2024-04-01 16:29:39,786 - ThreadPoolExecutor with 11 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,786 - Starting ProcessPoolExecutor with 11 workers
+2024-04-01 16:29:39,787 - ProcessPoolExecutor with 11 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,787 - Starting ThreadPoolExecutor with 12 workers
+2024-04-01 16:29:39,787 - ThreadPoolExecutor with 12 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,787 - Starting ProcessPoolExecutor with 12 workers
+2024-04-01 16:29:39,788 - ProcessPoolExecutor with 12 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,788 - Starting ThreadPoolExecutor with 13 workers
+2024-04-01 16:29:39,788 - ThreadPoolExecutor with 13 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,788 - Starting ProcessPoolExecutor with 13 workers
+2024-04-01 16:29:39,789 - ProcessPoolExecutor with 13 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,789 - Starting ThreadPoolExecutor with 14 workers
+2024-04-01 16:29:39,790 - ThreadPoolExecutor with 14 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,790 - Starting ProcessPoolExecutor with 14 workers
+2024-04-01 16:29:39,790 - ProcessPoolExecutor with 14 workers finished in 0.0005 seconds
+2024-04-01 16:29:39,790 - Starting ThreadPoolExecutor with 15 workers
+2024-04-01 16:29:39,791 - ThreadPoolExecutor with 15 workers finished in 0.0006 seconds
+2024-04-01 16:29:39,791 - Starting ProcessPoolExecutor with 15 workers
+2024-04-01 16:29:39,792 - ProcessPoolExecutor with 15 workers finished in 0.0007 seconds
+2024-04-01 16:29:39,792 - Starting ThreadPoolExecutor with 16 workers
+2024-04-01 16:29:39,793 - ThreadPoolExecutor with 16 workers finished in 0.0010 seconds
+2024-04-01 16:29:39,793 - Starting ProcessPoolExecutor with 16 workers
+2024-04-01 16:29:39,794 - ProcessPoolExecutor with 16 workers finished in 0.0011 seconds
