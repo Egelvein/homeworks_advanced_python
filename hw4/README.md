@@ -1,6 +1,6 @@
-# Classes for matrix's operations
+# Multiprocessing
 
-Solving tasks on creating classes for work with matrices
+Solving tasks about threading and multiprocessing
 
 ## Contents
 - [Task 1](#task-1)
@@ -10,47 +10,44 @@ Solving tasks on creating classes for work with matrices
 ### Task 1
 **Task:** 
 
-You need to implement a small library for working with matrices
-- Make a matrix class in which to define addition and multiplication operations (matrix and component-by-component) by overloading ```+, *, @``` operators (as in numpy). Call exceptions if the matrices on the input are of incorrect dimension (ValueError)
-- Generate two matrices via ```np.random.randint(0, 10, (10, 10))``` with seed 0 and perform all three operations on them.
-- Write the results to text files named ```matrix+.txt```, ```matrix*.txt```, ```matrix@.txt```, respectively. This will be an artifact of the task.
+- Take the function of counting Fibonacci numbers and compare the code execution time (calling the function from a large number `n` (so that the difference in starts on threads and processes could be seen) 10 times through 10 threads/processes) when using `threading` and `multiprocessing`
+- It is necessary to compare the execution time at synchronous launching, using threads and processes. 
+- Artifact - text file with the results of launching by different methods.
 
- 
 **Solution:**
-Solution of this task are files in the folder ```artifacts/3.1```
+Solution of this task is the file ```artifacts/Results_fibonacci.txt```
 
 ### Task 2
 **Task:**
 
-- Using numpy mixins, make a class that will be able to perform all standard arithmetic operations.
-- Also add through mixins: writing an object to a file, beautiful display in the console (__str__), getters and setters for class fields
-- The classes themselves should have a minimum number of methods
+- Rewrite the ```integrate``` function so that its execution can be parallelized. Use `concurrent.futures`: `ThreadPoolExecutor` and `ProcessPoolExecutor`.
+- Add logging (when which task is started), compare execution time for `integrate(math.cos, 0, math.pi / 2, n_jobs=n_jobs)` at different number of `n_jobs` (from 1 to cpu_num*2) when using `ThreadPoolExecutor` and `ProcessPoolExecutor`. 
+- Artifact - log file, file comparing execution time in both cases depending on the number of vorkers
 
+function ```integrate```:
+```
+import math
+def integrate(f, a, b, *, n_jobs=1, n_iter=1000):
+    acc = 0
+    step = (b - a) / n_iter
+    for i in range(n_iter):
+        acc += f(a + i * step) * step
+    return acc
+```
  
 **Solution:**
-Solution of this task are files in the folder ```artifacts/3.2```
+Solution of this task are files ```artifacts/integration.log``` and ```Results_integration.txt```
 
 ### Task 3
 **Task:** 
 
-The task is a continuation of task 1:
-- To invent and implement the simplest hash function (give a brief text description in the comments in the code) for a matrix in the __hash__ method (put it in the mixins).
-- Restriction on the hash function - it must be non-constant (not return always one number)
-- Configure caching of the product of matrices by this hash function
-- Find collision in the hash function (if the search is done by code, the code should also be posted).
-- The artifact is 7 files:
-- - ```A.txt```, ```B.txt```, ```C.txt```, ```D.txt``` are matrices such that ```(hash(A) == hash(C)) and (A != C) and (B == D) and (A @ B != C @ D))```
-- - ```AB.txt``` is the result of the product ```A @ B```
-- - ```CD.txt``` - the real result of ```C @ D```
-- - ```hash.txt``` - hash of matrices ```AB``` and ```CD```
+Practice working with processes. Using `multiprocessing.Queue` and `multiprocessing.Pipe`. Implement the following application schema:
+- You have a main process and 2 child processes (`A` and `B`).
+- From the main process you can, via `stdin`, send messages (strings) to process `A`, which will be stored in a queue.
+- To each of the messages, process `A` will apply `.lower()` and send to process `B` (one message every 5 seconds).
+- Process `B` should send the encoded string through `rot13` and send it to the main process from where it should print to `stdout`.
+- Artifact - text file of interaction between you and the program (message time should be output)
 
-
-**Description:**
-I failed to create a hash function so that ```A != C``` but ```hash(A) == hash(C)```. Also I don`t know how to add my hash function in the mixin.
-
-I decided to use a hash function I invented myself, because the conditional method of mean squares seemed too simple to me: ```hash_value = value^3 + (seed - 2)*value``` 
-
-But I managed to create a reverse hash function, which I also checked here (the file can be found in the solutions folder)
  
 **Solution:**
-Solution of this task are files in the folder ```artifacts/3.3```
+Solution of this task is file ```artifacts/Result_programms_a_and_b.txt```
