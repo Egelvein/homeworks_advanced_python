@@ -29,7 +29,7 @@ async def main(num_img: int, path: str):
 
 
 num_img = 50
-path = 'downloaded_images'
+path = 'artifacts'
 
 if not os.path.exists(path):
     os.makedirs(path)
