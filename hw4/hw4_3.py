@@ -1,54 +1,82 @@
-import multiprocessing
+import codecs
+import multiprocessing as mp
 import time
 import queue
-import codecs
-from datetime import datetime
 
-def process_a(queue_ab, queue_ba):
-    while True:
-        try:
-            message, timestamp = queue_ab.get(timeout=1)
-            message_lower = message.lower()
-            queue_ba.put((message_lower, timestamp))
-        
-        except queue.Empty:
-            pass
 
-def process_b(queue_ba):
-    while True:
-        try:
-            message_lower, timestamp = queue_ba.get(timeout=1)
-            message_rot13 = codecs.encode(message_lower, 'rot_13')
-            queue_ba.put((message_rot13, timestamp))
-        
-        except queue.Empty:
-            pass
+class MainProcess():
+    def __init__(self, filename_stdout):
+        self.queue_to_a = mp.Queue()
+        self.queue_to_b = mp.Queue()
+        self.filename_stdout = filename_stdout
+
+    def send_data(self, line, lock):
+        msg = line.strip()
+        self.queue_to_a.put(msg)
+        with lock:
+            with open(self.filename_stdout, 'a') as f_stdout:
+                f_stdout.write(f'Time: {time.time() % 1000:.7f}\tSent to Process A: {msg}\n')
+
+    def receive_data(self, lock):
+        while True:
+            try:
+                res = self.queue_to_b.get()
+                with lock:
+                    with open(self.filename_stdout, 'a') as f_stdout:
+                        f_stdout.write(f'Time: {time.time() % 1000:.7f}\tReceived from Process B: {res[0]}\n')
+            except queue.Empty:
+                pass
+
+
+class ProcessA():
+    def __init__(self, main_process: MainProcess, pipe_entry):
+        self.main = main_process
+        self.pipe = pipe_entry
+
+    def send_msg(self, msg: str):
+        self.pipe.send(msg.lower())
+        time.sleep(5)
+
+    def receive_msg(self):
+        while True:
+            try:
+                msg = self.main.queue_to_a.get()
+                self.send_msg(msg)
+            except queue.Empty:
+                pass
+
+
+class ProcessB():
+    def __init__(self, main_process: MainProcess, pipe_out):
+        self.main = main_process
+        self.pipe = pipe_out
+
+    def send_msg(self, msg: str):
+        self.main.queue_to_b.put([msg])
+
+    def receive_msg(self):
+        while True:
+            msg = self.pipe.recv()
+            if msg:
+                self.send_msg(codecs.encode(msg, 'rot_13'))
 
 
 if __name__ == '__main__':
-    queue_ab = multiprocessing.Queue()
-    queue_ba = multiprocessing.Queue()
+    filename_stdout = './artifacts/Result_programms_a_and_b_1.txt'
 
-    process_a = multiprocessing.Process(target=process_a, args=(queue_ab, queue_ba))
-    process_b = multiprocessing.Process(target=process_b, args=(queue_ba,))
+    a, b = mp.Pipe(duplex=False)
+    lock = mp.Lock()
 
-    process_a.start()
-    process_b.start()
+    main = MainProcess(filename_stdout)
+    A = ProcessA(main, b)
+    B = ProcessB(main, a)
 
-    with open('artifacts/Result_programms_a_and_b.txt', 'w') as f:
-        try:
-            while True:
-                message = input("Enter message: ")
-                f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Sent to Process A: {message}\n")
-                queue_ab.put((message, datetime.now()))
-                print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Sent to Process A: {message}")
+    x1 = mp.Process(target=main.receive_data, args=(lock,))
+    x2 = mp.Process(target=B.receive_msg, args=())
+    x3 = mp.Process(target=A.receive_msg, args=())
 
-                encoded_message, timestamp = queue_ba.get()
-                f.write(f"[{timestamp.strftime('%Y-%m-%d %H:%M:%S')}] Received from Process B: {encoded_message}\n")
-                print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Received from Process B: {encoded_message}")
+    for x in x1, x2, x3:
+        x.start()
 
-                time.sleep(5)
-
-        except KeyboardInterrupt: # Ctrl + C
-            process_b.terminate()
-
+    while True:
+        main.send_data(input(), lock)

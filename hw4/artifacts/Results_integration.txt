@@ -1,17 +1,33 @@
-n_jobs	ThreadPoolExecutor	ProcessPoolExecutor
-1	0.00012159347534179688	0.00010180473327636719
-2	0.0016562938690185547	0.0005602836608886719
-3	0.000652313232421875	0.0006077289581298828
-4	0.0010833740234375	0.0008215904235839844
-5	0.0007681846618652344	0.00038695335388183594
-6	0.0005848407745361328	0.0006062984466552734
-7	0.0005648136138916016	0.0007679462432861328
-8	0.0005702972412109375	0.00046896934509277344
-9	0.0005724430084228516	0.0004999637603759766
-10	0.0006730556488037109	0.0005176067352294922
-11	0.0005333423614501953	0.0005178451538085938
-12	0.0005273818969726562	0.0005469322204589844
-13	0.0006132125854492188	0.0005340576171875
-14	0.0005502700805664062	0.0005433559417724609
-15	0.0006275177001953125	0.0006873607635498047
-16	0.0009903907775878906	0.001102447509765625
+ThreadPoolExecutor, jobs: 1, time: 4.821
+ThreadPoolExecutor, jobs: 2, time: 4.897
+ThreadPoolExecutor, jobs: 3, time: 4.935
+ThreadPoolExecutor, jobs: 4, time: 4.952
+ThreadPoolExecutor, jobs: 5, time: 4.998
+ThreadPoolExecutor, jobs: 6, time: 4.997
+ThreadPoolExecutor, jobs: 7, time: 5.004
+ThreadPoolExecutor, jobs: 8, time: 4.995
+ThreadPoolExecutor, jobs: 9, time: 5.016
+ThreadPoolExecutor, jobs: 10, time: 4.994
+ThreadPoolExecutor, jobs: 11, time: 5.030
+ThreadPoolExecutor, jobs: 12, time: 4.999
+ThreadPoolExecutor, jobs: 13, time: 5.042
+ThreadPoolExecutor, jobs: 14, time: 5.149
+ThreadPoolExecutor, jobs: 15, time: 5.057
+ThreadPoolExecutor, jobs: 16, time: 5.055
+
+ProcessPoolExecutor, jobs: 1, time: 4.738
+ProcessPoolExecutor, jobs: 2, time: 2.448
+ProcessPoolExecutor, jobs: 3, time: 1.702
+ProcessPoolExecutor, jobs: 4, time: 1.298
+ProcessPoolExecutor, jobs: 5, time: 1.570
+ProcessPoolExecutor, jobs: 6, time: 1.477
+ProcessPoolExecutor, jobs: 7, time: 1.993
+ProcessPoolExecutor, jobs: 8, time: 2.332
+ProcessPoolExecutor, jobs: 9, time: 2.147
+ProcessPoolExecutor, jobs: 10, time: 2.158
+ProcessPoolExecutor, jobs: 11, time: 2.132
+ProcessPoolExecutor, jobs: 12, time: 2.108
+ProcessPoolExecutor, jobs: 13, time: 2.139
+ProcessPoolExecutor, jobs: 14, time: 2.150
+ProcessPoolExecutor, jobs: 15, time: 2.106
+ProcessPoolExecutor, jobs: 16, time: 2.160

@@ -1,6 +1,12 @@
-[2024-04-01 16:48:54] Sent to Process A: ПреВЕД МедвЕВ
-[2024-04-01 16:48:54] Received from Process B: превед медвев
-[2024-04-01 16:49:08] Sent to Process A: как ТВОИ дела?
-[2024-04-01 16:49:08] Received from Process B: как твои дела?
-[2024-04-01 16:49:28] Sent to Process A: Ладна доваЙ до СВИДАНИЯ!
-[2024-04-01 16:49:28] Received from Process B: ладна довай до свидания!
+Time: 530.7981308	Sent to Process A: Хьюстон, приём, ответьте
+Time: 530.8045077	Received from Process B: хьюстон, приём, ответьте
+Time: 542.0468872	Sent to Process A: Дикси, приём, слушаю
+Time: 542.0470738	Received from Process B: дикси, приём, слушаю
+Time: 555.4891336	Sent to Process A: Хьюстон, приём, сейчас отправим Вам груз
+Time: 555.4901083	Received from Process B: хьюстон, приём, сейчас отправим вам груз
+Time: 570.8841269	Sent to Process A: Дикси, приём, к приёму груза готовы, высЫЛАЙТЕ человека
+Time: 570.8852460	Received from Process B: дикси, приём, к приёму груза готовы, высылайте человека
+Time: 577.7979524	Sent to Process A: Хьюстон, приём, принял
+Time: 577.7988679	Received from Process B: хьюстон, приём, принял
+Time: 582.7560313	Sent to Process A: Дикси, приём, принял
+Time: 582.7993040	Received from Process B: дикси, приём, принял
