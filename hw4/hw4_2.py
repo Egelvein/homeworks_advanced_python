@@ -1,72 +1,52 @@
+from concurrent.futures import as_completed, Executor, ProcessPoolExecutor, ThreadPoolExecutor, wait
 import math
-import concurrent.futures
-import logging
-import multiprocessing
 import time
 
-def integrate(f, a, b, *, n_jobs=1, n_iter=1000):
-    acc = 0
-    step = (b - a) / n_iter
+def report(data_center: str, workers: int, timing: float):
+    with open('./artifacts/Results_integration_1.txt', 'a') as f:
+        f.write(f'{data_center}, jobs: {workers}, time: {timing:.3f}\n')
 
-    def compute_chunk(start, end):
-        chunk_acc = 0
-        
-        for i in range(start, end):
-            chunk_acc += f(a + i * step) * step
-        
-        return chunk_acc
+def segment_integral(func, initial, step, start, stop):
+    result = 0
+    for i in range(start, stop):
+        result += func(initial + i * step) * step
+    return result
 
-    if n_jobs == 1:
-        acc = compute_chunk(0, n_iter)
-    
+def integrate(func, initial, end, data_center: str, workers: int = 1, iterations: int = 50000000):
+    if data_center == 'ProcessPoolExecutor':
+        center = ProcessPoolExecutor(workers)
+    elif data_center == 'ThreadPoolExecutor':
+        center = ThreadPoolExecutor(workers)
     else:
-        chunk_size = n_iter // n_jobs
-        
-        with concurrent.futures.ThreadPoolExecutor(max_workers=n_jobs) as executor:
-            futures = []
-            
-            for i in range(n_jobs):
-                start = i * chunk_size
-                end = (i + 1) * chunk_size if i < n_jobs - 1 else n_iter
-                futures.append(executor.submit(compute_chunk, start, end))
-            
-            for future in concurrent.futures.as_completed(futures):
-                acc += future.result()
+        return 0
 
-    return acc
+    total_area = 0
+    step = (end - initial)/iterations
 
-def comparing():
-    logging.basicConfig(filename='artifacts/integration.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+    with open('./artifacts/integration_1.txt', 'a') as log_file:
+        log_file.write(f'{data_center}, {workers} jobs, {time.time() % 10000}\n')
 
-    cpu_num = multiprocessing.cpu_count()
+    start_time = time.time()
+    tasks = []
+    for i in range(workers):
+        section = math.ceil(iterations / workers)
+        start_index = i * section
+        end_index = min(iterations, start_index + section)
+        tasks.append(center.submit(segment_integral, func, initial, step, start_index, end_index))
 
-    n_jobs_values = list(range(1, cpu_num * 2 + 1))
+    total_area = sum([task.result() for task in tasks])
+    end_time = time.time()
+    report(data_center, workers, end_time - start_time)
 
-    results_threadpool = {}
-    results_processpool = {}
+    with open('./artifacts/integration_1.txt', 'a') as log_file:
+        log_file.write(f'{data_center} with {workers} workforce completed! Result: {total_area:.3f}, time: {end_time - start_time}\n\n')
 
-    for n_jobs in n_jobs_values:
-        logging.info(f'Starting ThreadPoolExecutor with {n_jobs} workers')
-        start_time_threadpool = time.time()
-        integrate(math.cos, 0, math.pi / 2, n_jobs=n_jobs)
-        end_time_threadpool = time.time()
-        elapsed_time_threadpool = end_time_threadpool - start_time_threadpool
-        results_threadpool[n_jobs] = elapsed_time_threadpool
-        logging.info(f'ThreadPoolExecutor with {n_jobs} workers finished in {elapsed_time_threadpool:.4f} seconds')
+    return total_area
 
-        logging.info(f'Starting ProcessPoolExecutor with {n_jobs} workers')
-        start_time_processpool = time.time()
-        integrate(math.cos, 0, math.pi / 2, n_jobs=n_jobs)
-        end_time_processpool = time.time()
-        elapsed_time_processpool = end_time_processpool - start_time_processpool
-        results_processpool[n_jobs] = elapsed_time_processpool
-        logging.info(f'ProcessPoolExecutor with {n_jobs} workers finished in {elapsed_time_processpool:.4f} seconds')
-
-    with open('artifacts/Results_integration.txt', 'w') as file:
-        file.write('n_jobs\tThreadPoolExecutor\tProcessPoolExecutor\n')
-        
-        for n_jobs in n_jobs_values:
-            file.write(f'{n_jobs}\t{results_threadpool[n_jobs]}\t{results_processpool[n_jobs]}\n')
-
-if __name__ == "__main__":
-    comparing()
+if __name__ == '__main__':
+    for workers in range(1, 17):
+        integrate(math.cos, 0, math.pi/2, 'ThreadPoolExecutor', workers)
+    with open('./artifacts/Results_integration_1.txt', 'a') as f:
+        f.write('\n')
+    for workers in range(1, 17):
+        integrate(math.cos, 0, math.pi/2, 'ProcessPoolExecutor', workers)
